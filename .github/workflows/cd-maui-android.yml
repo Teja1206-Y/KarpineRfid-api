@@ -1,0 +1,36 @@
+name: CD - KarpineRfid Android
+
+on:
+  workflow_run:
+    workflows: ["CI - MAUI Android"]
+    types:
+      - completed
+
+jobs:
+  build-android:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '9.0.x'
+
+    - name: Install MAUI Android workload
+      run: dotnet workload install maui-android
+
+    - name: Build Android APK
+      run: |
+        dotnet publish KarpineRfid.App/KarpineRfid.App.csproj `
+          -c Release `
+          -f net9.0-android `
+          -o android-output
+
+    - name: Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: KarpineRfid-Android-APK
+        path: android-output/**/*.apk
