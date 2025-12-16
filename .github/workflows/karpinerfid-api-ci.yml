@@ -1,0 +1,26 @@
+name: KarpineRFID API CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '9'
+
+    - name: Restore dependencies
+      run: dotnet restore KarpineRfid.sln
+
+    - name: Build API
+      run: dotnet build KarpineRfid.Api/KarpineRfid.Api.csproj --configuration Release --no-restore
