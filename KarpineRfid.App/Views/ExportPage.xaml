@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="KarpineRfid.App.Views.ExportPage"
+             Title="ExportPage">
+    <Grid RowDefinitions="*,Auto">
+
+        <!-- Scrollable content -->
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Padding="16" Spacing="16">
+
+                <!-- Session summary -->
+                <Frame Padding="12" CornerRadius="0" HasShadow="True" BackgroundColor="White">
+                    <VerticalStackLayout>
+                        <Label Text="Export Session" FontAttributes="Bold" FontSize="18"/>
+                        <Label Text="{Binding Session.Title}" FontSize="14"/>
+                        <Label Text="{Binding Session.CreatedAt, StringFormat='Created: {0:dd MMM yyyy HH:mm}'}" FontSize="12"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Export format -->
+                <Frame Padding="12" CornerRadius="0" HasShadow="True" BackgroundColor="White">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Choose format" FontAttributes="Bold" />
+                        <Picker Title="Format" SelectedItem="{Binding SelectedFormat}" >
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>CSV</x:String>
+                                    <x:String>JSON</x:String>
+                                    <x:String>Both</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Field selection -->
+                <Frame Padding="12" CornerRadius="0" HasShadow="True" BackgroundColor="White">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Fields to include" FontAttributes="Bold" />
+
+                        <!-- Each checkbox row: 36x36 -->
+                        <VerticalStackLayout Spacing="8">
+                            <Grid ColumnDefinitions="Auto,*,Auto" VerticalOptions="Center">
+                                <CheckBox IsChecked="{Binding IncludeFieldSessionId}" WidthRequest="36" HeightRequest="36" />
+                                <Label Text="Session ID" Grid.Column="1" VerticalOptions="Center" Margin="12,0,0,0"/>
+                            </Grid>
+
+                            <Grid ColumnDefinitions="Auto,*,Auto" VerticalOptions="Center">
+                                <CheckBox IsChecked="{Binding IncludeFieldTitle}" WidthRequest="36" HeightRequest="36" />
+                                <Label Text="Title" Grid.Column="1" VerticalOptions="Center" Margin="12,0,0,0"/>
+                            </Grid>
+
+                            <Grid ColumnDefinitions="Auto,*,Auto" VerticalOptions="Center">
+                                <CheckBox IsChecked="{Binding IncludeFieldCreatedAt}" WidthRequest="36" HeightRequest="36" />
+                                <Label Text="Created At" Grid.Column="1" VerticalOptions="Center" Margin="12,0,0,0"/>
+                            </Grid>
+
+                            <Grid ColumnDefinitions="Auto,*,Auto" VerticalOptions="Center">
+                                <CheckBox IsChecked="{Binding IncludeFieldNotes}" WidthRequest="36" HeightRequest="36" />
+                                <Label Text="Notes" Grid.Column="1" VerticalOptions="Center" Margin="12,0,0,0"/>
+                            </Grid>
+
+                            <Grid ColumnDefinitions="Auto,*,Auto" VerticalOptions="Center">
+                                <CheckBox IsChecked="{Binding IncludeFieldTags}" WidthRequest="36" HeightRequest="36" />
+                                <Label Text="Tags (all tag fields)" Grid.Column="1" VerticalOptions="Center" Margin="12,0,0,0"/>
+                            </Grid>
+                        </VerticalStackLayout>
+
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Small footer / debug -->
+                <Label Text="{Binding Session.SessionId}" FontSize="10" Opacity="0.5" HorizontalOptions="Center" />
+
+                <!-- Spacer so bottom buttons don't overlap -->
+                <BoxView HeightRequest="24" BackgroundColor="Transparent" />
+                
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Sticky bottom row with Save + Share -->
+        <Grid Grid.Row="1" Padding="12" BackgroundColor="#FAFAFA" ColumnDefinitions="*,*">
+            <Button Text="Save"
+                    Command="{Binding SaveCommand}"
+                    CornerRadius="0"
+                    HeightRequest="48"
+                    BackgroundColor="#2196F3"
+                    TextColor="White"
+                    Margin="0,0,8,0"/>
+            <Button Grid.Column="1"
+                    Text="Share"
+                    Command="{Binding ShareCommand}"
+                    CornerRadius="0"
+                    HeightRequest="48"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White"
+                    Margin="8,0,0,0"/>
+        </Grid>
+    </Grid>
+    
+    
+</ContentPage>

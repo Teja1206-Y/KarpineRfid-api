@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="KarpineRfid.App.Views.AboutModalPage"
+             Title="AboutModalPage">
+    <VerticalStackLayout Padding="20" Spacing="12" HorizontalOptions="Center" VerticalOptions="Center">
+            <Label Text="Karpine RFID" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center" />
+            <Label Text="Version: 1.0.0" HorizontalOptions="Center" />
+            <Label Text="Build: dev" HorizontalOptions="Center" />
+            <Label Text="Support: support@karpine.example" HorizontalOptions="Center" />
+            <Button Text="Close" Clicked="Close_Clicked" />
+        <Label Text="© 2025 KARPINE RFID. All rights reserved." 
+     FontSize="12" 
+     HorizontalOptions="Center"
+     TextColor="DarkGray" />
+    </VerticalStackLayout>
+</ContentPage>

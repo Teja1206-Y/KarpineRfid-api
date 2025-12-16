@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="640" height="640" viewBox="0 0 640 640" xml:space="preserve">
+  <desc>Enhanced Karpine RFID App Icon - Plain 'K' Text</desc>
+  <!-- Background Rectangle -->
+  <rect width="640" height="640" fill="#007ACC" />
+  <!-- Centered 'K' Text -->
+  <text x="320" y="385" font-family="M PLUS 1p" font-size="210" font-weight="bold" text-anchor="middle" fill="#FFFFFF">K</text>
+</svg>

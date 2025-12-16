@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="KarpineRfid.App.Views.SessionDetailPage"
+             Title="SessionDetailPage">
+    <AbsoluteLayout>
+
+        <!-- Main scrollable content -->
+        <ScrollView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <VerticalStackLayout Padding="16" Spacing="12">
+
+                <!-- Summary card -->
+                <Frame CornerRadius="0" HasShadow="True" Padding="14" BackgroundColor="White">
+                    <VerticalStackLayout Spacing="8">
+                        <Label x:Name="LblTitle"
+                               Text="Session title"
+                               FontSize="22"
+                               FontAttributes="Bold"
+                               TextColor="#222" />
+
+                        <Label x:Name="LblCreated"
+                               Text="Created on ..."
+                               FontSize="12"
+                               TextColor="#777" />
+
+                        <Label Text="Notes:" FontAttributes="Bold" Margin="0,8,0,0" />
+                        <Label x:Name="LblNotes" Text="Notes go here" LineBreakMode="WordWrap" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Tag list header -->
+                <Label Text="Tags" FontAttributes="Bold" FontSize="16" />
+
+                <!-- Tag list -->
+                <CollectionView x:Name="CvTags"
+                                ItemsLayout="VerticalList"
+                                HeightRequest="220">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame CornerRadius="0" Padding="10" Margin="0,6" BackgroundColor="White" HasShadow="True">
+                                <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto">
+                                    <VerticalStackLayout Grid.Column="0" Spacing="4">
+                                        <Label Text="{Binding Id}" FontAttributes="Bold" FontSize="14" />
+                                        <Label Text="{Binding Note}" FontSize="12" Opacity="0.8" />
+                                        <Label Text="{Binding ReadCount, StringFormat='Reads: {0}'}" FontSize="12" Opacity="0.8" />
+                                    </VerticalStackLayout>
+
+                                    <Label Grid.Column="1"
+                                           Text="{Binding Rssi, StringFormat='RSSI: {0}'}"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="End"
+                                           FontSize="12"
+                                           Opacity="0.8"/>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- spacer so floating button doesn't overlap last item -->
+                <BoxView HeightRequest="160" BackgroundColor="Transparent" />
+                
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+       
+
+        <!-- Bubble Text -->
+        <Frame
+        AbsoluteLayout.LayoutFlags="PositionProportional"
+        AbsoluteLayout.LayoutBounds="0.76,0.92,110,48"
+        BackgroundColor="#2196F3"
+        CornerRadius="0"
+        HasShadow="True"
+        Padding="0">
+
+            <Grid>
+                <Label
+                Text="Export"
+                FontSize="16"
+                FontAttributes="Bold"
+                TextColor="White"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
+            </Grid>
+
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnExportTapped" />
+            </Frame.GestureRecognizers>
+        </Frame>
+
+    </AbsoluteLayout>
+
+</ContentPage>

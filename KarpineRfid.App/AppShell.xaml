@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell 
+    x:Class="KarpineRfid.App.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:KarpineRfid.App.Views"
+    Title="KarpineRfid.App">
+
+    <!-- HOME -->
+    <!--<ShellContent Title="Home" Route="main" ContentTemplate="{DataTemplate views:MainPage}" />-->
+
+   <ShellContent Title="Homepage"
+                  Route="homepage"
+                  Icon="homepage.png"
+                  ContentTemplate="{DataTemplate views:Homepage}" />
+
+    <ShellContent Title="Sessions"
+                  Route="sessions"
+                  Icon="session.png"
+                  ContentTemplate="{DataTemplate views:SessionListPage}" />
+
+    <ShellContent Title="Settings"
+                  Route="settings"
+                  Icon="setting.png"
+                  ContentTemplate="{DataTemplate views:SettingsPage}" />
+
+    <ShellContent Title="About"
+                  Route="about"
+                  Icon="about.png"
+                  ContentTemplate="{DataTemplate views:AboutModalPage}" />
+
+    <ShellContent Title="Export"
+                  Route="export"
+                  Icon="export.png"
+                  ContentTemplate="{DataTemplate views:ExportPage}" />
+    
+
+
+
+
+</Shell>

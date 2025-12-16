@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="KarpineRfid.App.Views.SettingsPage"
+             Title="SettingsPage">
+    <ContentPage.Resources>
+        <Style x:Key="SectionHeader" TargetType="Label">
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="#222" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="18">
+
+            <!-- Connection section -->
+            <Label Text="Connection" Style="{StaticResource SectionHeader}" />
+            <Frame CornerRadius="10" BackgroundColor="White" HasShadow="True" Padding="0">
+                <StackLayout>
+                    <Grid HeightRequest="120" Padding="14" ColumnDefinitions="*,Auto">
+                        <StackLayout VerticalOptions="Center">
+                            <Label Text="Auto-connect" FontSize="16" FontAttributes="Bold" />
+                            <Label Text="Automatically connect to last known reader" FontSize="12" TextColor="#666"/>
+                        </StackLayout>
+
+                        <Switch IsToggled="{Binding AutoConnect}" VerticalOptions="Start" />
+                    </Grid>
+                </StackLayout>
+            </Frame>
+
+            <!-- Sound / Beep -->
+            <Label Text="Audio" Style="{StaticResource SectionHeader}" />
+            <Frame CornerRadius="10" BackgroundColor="White" HasShadow="True" Padding="0">
+                <Grid HeightRequest="120" Padding="14" ColumnDefinitions="*,Auto">
+                    <StackLayout VerticalOptions="Center">
+                        <Label Text="Beep on tag read" FontSize="16" FontAttributes="Bold" />
+                        <Label Text="Play beep sound for each tag read" FontSize="12" TextColor="#666"/>
+                    </StackLayout>
+
+                    <Switch IsToggled="{Binding BeepEnabled}" VerticalOptions="StartAndExpand" />
+                </Grid>
+            </Frame>
+
+            <!-- Theme -->
+            <Label Text="Appearance" Style="{StaticResource SectionHeader}" />
+            <Frame CornerRadius="10" BackgroundColor="White" HasShadow="True" Padding="0">
+                <Grid HeightRequest="120" Padding="14" ColumnDefinitions="*,Auto">
+                    <StackLayout VerticalOptions="Center">
+                        <Label Text="Theme" FontSize="16" FontAttributes="Bold" />
+                        <Label Text="Light / Dark / System" FontSize="12" TextColor="#666"/>
+                    </StackLayout>
+
+                    <Picker SelectedItem="{Binding SelectedTheme}" WidthRequest="140" VerticalOptions="Center">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>System</x:String>
+                                <x:String>Light</x:String>
+                                <x:String>Dark</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                </Grid>
+            </Frame>
+
+            <!-- Data -->
+            <Label Text="Data" Style="{StaticResource SectionHeader}" />
+            <Frame CornerRadius="10" BackgroundColor="White" HasShadow="True" Padding="0">
+                <Grid HeightRequest="120" Padding="14" ColumnDefinitions="*,Auto">
+                    <StackLayout VerticalOptions="Center">
+                        <Label Text="Clear app data" FontSize="16" FontAttributes="Bold" />
+                        <Label Text="Remove all saved sessions (irreversible)" FontSize="12" TextColor="#C00"/>
+                    </StackLayout>
+
+                    <Button Text="Clear" Command="{Binding ClearDataCommand}" BackgroundColor="#E53935" TextColor="White" CornerRadius="10" VerticalOptions="Center" />
+                </Grid>
+            </Frame>
+
+            <!-- About row (simple) -->
+            <Label Text="About" Style="{StaticResource SectionHeader}" />
+            <Frame CornerRadius="10" BackgroundColor="White" HasShadow="True" Padding="0">
+                <Grid HeightRequest="120" Padding="14" ColumnDefinitions="*,Auto">
+                    <StackLayout VerticalOptions="Center">
+                        <Label Text="About this app" FontSize="16" FontAttributes="Bold" />
+                        <Label Text="Version, author and license" FontSize="12" TextColor="#666"/>
+                    </StackLayout>
+
+                    <Button Text="Open" Command="{Binding OpenAboutCommand}" BackgroundColor="#2196F3" TextColor="White" CornerRadius="10" VerticalOptions="Center" />
+                </Grid>
+            </Frame>
+
+            <BoxView HeightRequest="24" BackgroundColor="Transparent" />
+            <Label Text="© 2025 KARPINE RFID. All rights reserved." 
+     FontSize="12" 
+     HorizontalOptions="Center"
+     TextColor="DarkGray" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:KarpineRfid.App.Models"
+             x:Class="KarpineRfid.App.Views.SessionListPage"
+             Title="SessionListPage">
+    <ContentPage.ToolbarItems>
+        <!-- Sort toggles newest/oldest -->
+        <ToolbarItem IconImageSource="sort.png"
+                     Priority="0"
+                     Order="Primary"
+                     Command="{Binding SortCommand}" />
+
+        <!-- Filter toggles only-with-tags / all -->
+        <ToolbarItem IconImageSource="filter.png"
+                     Priority="1"
+                     Order="Primary"
+                     Command="{Binding FilterCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <CollectionView x:Name="CvSessions"
+                        ItemsSource="{Binding Sessions}"
+                        SelectionMode="Single"
+                        SelectionChanged="CollectionView_SelectionChanged"
+                        Margin="10">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Session">
+                    <Frame Margin="0,6"
+                           Padding="0"
+                           HeightRequest="140"
+                           HasShadow="True"
+                           CornerRadius="0"
+                           BackgroundColor="White">
+                        <Grid ColumnDefinitions="6,*,Auto">
+                            <!-- Accent bar -->
+                            <BoxView Grid.Column="0" BackgroundColor="#0078D7" CornerRadius="0" />
+
+                            <!-- Main info -->
+                            <VerticalStackLayout Grid.Column="1" Padding="12,8">
+                                <Label Text="{Binding Title}" FontSize="18" FontAttributes="Bold" TextColor="#222" />
+                                <Label Text="{Binding CreatedAt, StringFormat='Created on {0:dd MMM yyyy HH:mm}'}" FontSize="12" TextColor="#777" />
+                                <Label Text="{Binding TagsDisplay}" FontSize="13" TextColor="#555" />
+                            </VerticalStackLayout>
+
+                            <!-- Open button -->
+                            <Button Grid.Column="2"
+                                    Margin="10"
+                                    Padding="12,8"
+                                    Text="Open"
+                                    BackgroundColor="#0078D7"
+                                    TextColor="White"
+                                    CornerRadius="0"
+                                    Clicked="Open_Clicked"
+                                    CommandParameter="{Binding}" />
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </ContentPage.Content>
+
+
+</ContentPage>

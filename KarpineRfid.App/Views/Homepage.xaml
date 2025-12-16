@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="KarpineRfid.App.Views.Homepage"
+             Title="KarpineTechnologies">
+    <ContentPage.Resources>
+        <!-- Tile frame base style -->
+        <Style x:Key="TileFrame" TargetType="Frame">
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="HasShadow" Value="True" />
+            <Setter Property="Padding" Value="12" />
+            <Setter Property="HeightRequest" Value="120" />
+            <Setter Property="WidthRequest" Value="170" />
+            <Setter Property="Margin" Value="8" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="BackgroundColor" Value="#EEE" />
+        </Style>
+
+        <!-- Tile label -->
+        <Style x:Key="TileText" TargetType="Label">
+            <Setter Property="FontSize" Value="17" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center" />
+        </Style>
+
+        <!-- small subtitle -->
+        <Style x:Key="Subtitle" TargetType="Label">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="TextColor" Value="#6B7280" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+        </Style>
+    </ContentPage.Resources>
+
+    <!-- Root grid: top bar, headline, content, footer -->
+    <Grid RowDefinitions="Auto,Auto,*,Auto" ColumnDefinitions="*">
+
+        <!-- Top bar with gradient -->
+        <Grid Grid.Row="0" Padding="16,10" ColumnDefinitions="Auto,*,Auto">
+           
+
+            <BoxView Grid.Column="2" WidthRequest="1" BackgroundColor="Transparent" />
+
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#3b0f9b" Offset="0.0" />
+                    <GradientStop Color="#4c00c3" Offset="1.0" />
+                </LinearGradientBrush>
+            </Grid.Background>
+        </Grid>
+
+        <!-- Headline -->
+        <StackLayout Grid.Row="1" Padding="16,14,16,6" Spacing="4" HorizontalOptions="Fill">
+            <Label Text="Karpine RFID"
+                   FontSize="26"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="#0F172A" />
+            <Label Text="Welcome to Karpine RFID mobile app."
+                   Style="{StaticResource Subtitle}" />
+        </StackLayout>
+
+        <!-- Centered tiles area -->
+        <ScrollView Grid.Row="2" Padding="12,16,12,12">
+            <VerticalStackLayout Spacing="20" VerticalOptions="Center">
+
+                <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="16" RowSpacing="16">
+
+                    <!-- Sessions -->
+                    <Frame Style="{StaticResource TileFrame}" Grid.Row="0" Grid.Column="0">
+                        <Grid ColumnDefinitions="50,*" VerticalOptions="Center">
+                            <Image Source="sessions.png"
+                           WidthRequest="36" HeightRequest="36"
+                           VerticalOptions="Center" HorizontalOptions="Center" />
+                            <StackLayout Grid.Column="1" VerticalOptions="Center">
+                                <Label Text="Sessions" Style="{StaticResource TileText}" />
+                                <Label Text="Open session list" FontSize="12" TextColor="#DDECF0" />
+                            </StackLayout>
+                        </Grid>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OpenSessions_Clicked" />
+                        </Frame.GestureRecognizers>
+
+                        <Frame.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#0EA5A4" Offset="0.0" />
+                                <GradientStop Color="#089E99" Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Frame.Background>
+                    </Frame>
+
+                    <!-- About -->
+                    <Frame Style="{StaticResource TileFrame}" Grid.Row="0" Grid.Column="1">
+                        <Grid ColumnDefinitions="50,*" VerticalOptions="Center">
+                            <Image Source="about.png"
+                           WidthRequest="36" HeightRequest="36"
+                           VerticalOptions="Center" HorizontalOptions="Center" />
+                            <StackLayout Grid.Column="1" VerticalOptions="Center">
+                                <Label Text="About" Style="{StaticResource TileText}" />
+                                <Label Text="App &amp; company info" FontSize="12" TextColor="#FFEFEF" />
+                            </StackLayout>
+                        </Grid>
+
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OpenAbout_Clicked" />
+                        </Frame.GestureRecognizers>
+
+                        <Frame.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#F97316" Offset="0.0" />
+                                <GradientStop Color="#FB6B2B" Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Frame.Background>
+                    </Frame>
+
+                    <!-- Export -->
+                    <Frame Style="{StaticResource TileFrame}" Grid.Row="1" Grid.Column="0">
+                        <Grid ColumnDefinitions="50,*" VerticalOptions="Center">
+                            <Image Source="export.png"
+                           WidthRequest="36" HeightRequest="36"
+                           VerticalOptions="Center" HorizontalOptions="Center" />
+                            <StackLayout Grid.Column="1" VerticalOptions="Center">
+                                <Label Text="Export Report" Style="{StaticResource TileText}" />
+                                <Label Text="Export &amp; share" FontSize="12" TextColor="#DDECF0" />
+                            </StackLayout>
+                        </Grid>
+
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OpenExport_Clicked" />
+                        </Frame.GestureRecognizers>
+
+                        <Frame.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#065F46" Offset="0.0" />
+                                <GradientStop Color="#0B7A56" Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Frame.Background>
+                    </Frame>
+
+                    <!-- Settings -->
+                    <Frame Style="{StaticResource TileFrame}" Grid.Row="1" Grid.Column="1">
+                        <Grid ColumnDefinitions="50,*" VerticalOptions="Center">
+                            <Image Source="settings.png"
+                           WidthRequest="36" HeightRequest="36"
+                           VerticalOptions="Center" HorizontalOptions="Center" />
+                            <StackLayout Grid.Column="1" VerticalOptions="Center">
+                                <Label Text="Settings" Style="{StaticResource TileText}" />
+                                <Label Text="App preferences" FontSize="12" TextColor="#DDECF0" />
+                            </StackLayout>
+                        </Grid>
+
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OpenSettings_Clicked" />
+                        </Frame.GestureRecognizers>
+
+                        <Frame.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#2563EB" Offset="0.0" />
+                                <GradientStop Color="#1D4ED8" Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Frame.Background>
+                    </Frame>
+
+                </Grid>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+
+        <!-- Footer with POWERED BY KARPINE -->
+        <StackLayout Grid.Row="3" Padding="12,10" HorizontalOptions="Fill" VerticalOptions="End">
+            <Label HorizontalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="POWERED BY " TextColor="#9CA3AF" FontSize="12" FontAttributes="Bold" />
+                        <Span Text="KARPINE" TextColor="#0078D7" FontSize="12" FontAttributes="Bold" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </StackLayout>
+    </Grid>
+</ContentPage>
