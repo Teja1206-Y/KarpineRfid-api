@@ -1,4 +1,4 @@
-name: KarpineRFID API CI
+name: KarpineRFID MAUI CI
 
 on:
   push:
@@ -17,10 +17,16 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '9'
+        dotnet-version: '9.0.x'
 
-    - name: Restore dependencies
-      run: dotnet restore KarpineRfid.sln
+    # ✅ Install MAUI + Android workloads FIRST
+    - name: Install MAUI Android workload
+      run: dotnet workload install maui-android
 
-    - name: Build API
-      run: dotnet build KarpineRfid.Api/KarpineRfid.Api.csproj --configuration Release --no-restore
+    # ✅ Restore ONLY MAUI project (not solution)
+    - name: Restore MAUI project
+      run: dotnet restore KarpineRfid.App/KarpineRfid.App.csproj
+
+    # ✅ Build MAUI (no emulator)
+    - name: Build MAUI Android
+      run: dotnet build KarpineRfid.App/KarpineRfid.App.csproj -c Release --no-restore
